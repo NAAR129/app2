@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+
+<html lang="es-ES">
+<head id="Head"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <title></title>
+    <script type="text/javascript" charset="UTF-8" src="https://cdn.jsdelivr.net/npm/jsxgraph/distrib/jsxgraphcore.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/jsxgraph/distrib/jsxgraph.css" />
+    <style>
+        .graphbox {
+            width: 50%;
+            height: 0;
+            padding-bottom: 50%;
+			float:left;
+        }
+		.graphbox2 {
+            width: 45%;
+            height: 0;
+            padding-bottom: 25%;
+			float:left;
+        }
+	    .graphbox3 {
+            width: 45%;
+            height: 0;
+            padding-bottom:25%;
+			float:left;
+        }
+    </style>
+</head>
+<body>
+
+
+
+<div id="box" class="jxgbox graphbox"></div>
+<div id="box2" class="jxgbox graphbox2"></div>
+<div id="box3" class="jxgbox graphbox3"></div>
+
+
+
+<script type="text/javascript">
+   
+board = JXG.JSXGraph.initBoard('box', {boundingbox: [-5, 5, 5, -5], axis:true,showCopyright:false,showNavigation:false});
+board2 = JXG.JSXGraph.initBoard('box2', {boundingbox: [-5, 5, 5, -5], axis:true,showCopyright:false,showNavigation:false});
+board3 = JXG.JSXGraph.initBoard('box3', {boundingbox: [-5, 5, 5, -5], axis:true,showCopyright:false,showNavigation:false});
+
+
+a1 = board.create('slider',[[-4,-4.5],[-4,-2],[-1.5,1,1.5]], {name:'a1'});
+b1 = board.create('slider',[[-1.5,-4.5],[-1.5,-2],[0,1,20]], {name:'b1'}),
+
+a2 = board.create('slider',[[1,-4.5],[1,-2],[-1.5,-1.5,1.5]], {name:'a2'}),
+b2 = board.create('slider',[[3.5,-4.5],[3.5,-2],[0,1,20]], {name:'b2'}),
+
+
+//    f = board.create('functiongraph',[function(x){
+//            return a1.Value()*x*x + b1.Value()*x + a1.Value();
+//        }]);
+
+g = board.create('functiongraph',[function(x){
+                                  return (a1.Value())*(Math.sin(b1.Value()*x))+(a2.Value())*(Math.sin(b2.Value()*x));
+                                  }],{strokeColor: '#0000FF',strokeWidth: 3});
+                                  
+                                  board.create('text',[-4.5,4.5,'h(x)=f(x) # g(x)'],{fontSize:25});
+                                  
+                                  
+                                  
+                                  g1b2 = board2.create('functiongraph',[function(x){
+                                                                        return (a1.Value())*(Math.sin(b1.Value()*x));
+                                                                        }], {strokeColor: '#FF0000', strokeWidth: 3});
+                                                                        
+                                                                        
+                                                                        g1b3 = board3.create('functiongraph',[function(x){
+                                                                                                              return (a2.Value())*(Math.sin(b2.Value()*x));
+                                                                                                              }], {strokeColor: '#00FF00', strokeWidth: 3});
+                                                                                                              
+                                                                                                              
+                                                                                                              
+                                                                                        
+                                                                                        board.addChild(board2);
+                                                                                        board.addChild(board3);                                                                                                       
+   
+
+
+
+
+
+
+
+
+	
+
+	
+	
+	
+	
+	
+
+
+		
+		
+		
+		
+		
+        var resize = function () {
+            board.resizeContainer(board.containerObj.clientWidth, board.containerObj.clientHeight, true);
+            board.fullUpdate();
+        };
+
+        window.onresize = resize;
+</script>
+</body>
+</html>
